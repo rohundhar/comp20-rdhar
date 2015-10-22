@@ -1,10 +1,11 @@
 h1{
-	color:blue;
+	color:#33CCFF;
 	text-align: center;
 }
 p{
-	background-color: red;
+	background-color: #FF66CC;
 	color: white;
-	border-color: green;
+	border-color: #FF00FF;
 	border-style: outset; 
+	border-width: 5px;
 }
