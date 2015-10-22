@@ -3,7 +3,6 @@ var data;
 var parsedData;
 var request = new XMLHttpRequest();
 request.open("GET", "data.json", true);
-request.open("GET", "data.json", true);
 request.send(null);
 
 request.onreadystatechange = function() {
