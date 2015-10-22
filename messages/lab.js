@@ -9,7 +9,7 @@ request.send(null);
 request.onreadystatechange = function() {
 	if (request.readyState == 4){
 		console.log("DATA RECEIVED!");
-		var parsedData = JSON.parse(request.responseText);
+		parsedData = JSON.parse(request.responseText);
 		console.log("parsed the data", parsedData);
 	} 
 }
