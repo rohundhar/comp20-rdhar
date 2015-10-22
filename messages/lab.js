@@ -12,7 +12,8 @@ request.open("GET", "data.json", true);
 	data = request.responseText;
 //}
 
-console.log("this is the data:", data);
-parsedData = JSON.parse(data);
+
+parsedData = JSON.parse("data.json");
+console.log("this is the data:", parsedData);
 
 }
