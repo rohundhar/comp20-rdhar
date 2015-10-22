@@ -10,7 +10,7 @@ request.onreadystatechange = function() {
 	if (request.readyState == 4){
 		console.log("DATA RECEIVED!");
 		parsedData = JSON.parse(request.responseText);
-		document.body.innerHTML = parsedData[1].id;
+		document.h2.innerHTML = parsedData[1].id;
 		console.log("parsed the data", parsedData);
 	} 
 }
