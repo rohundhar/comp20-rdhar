@@ -19,7 +19,7 @@ request.onreadystatechange = function() {
 		output += "</ul>";
 
 		element = document.getElementById('messages');
-	element.document.write(output);
+		element.innerHTML(output);
 	} 
 
 }
