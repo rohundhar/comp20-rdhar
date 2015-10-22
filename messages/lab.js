@@ -12,13 +12,14 @@ request.onreadystatechange = function() {
 		console.log("DATA RECEIVED!");
 
 	} 
-	parsedData = JSON.parse(request.responseText);
-	//document.h2.innerHTML = parsedData[1].id;
-	element = document.getElementById('messages');
-	element.innerHTML = parsedData[0].id;
-	element.innerHTML = parsedData[0].content;
-	console.log("parsed the data", parsedData);
+
 }
+parsedData = JSON.parse(request.responseText);
+//document.h2.innerHTML = parsedData[1].id;
+element = document.getElementById('messages');
+element.innerHTML = parsedData[0].id;
+element.innerHTML = parsedData[0].content;
+console.log("parsed the data", parsedData);
 
 
 }
