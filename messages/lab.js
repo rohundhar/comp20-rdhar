@@ -6,13 +6,13 @@ request.open("GET", "data.json", true);
 
 request.onreadystatechange = function() {
 	if (request.readyState == 4){
-		console.log("DATA RECIEVED!");
+		console.log("DATA RECEIVED!");
 	}
 
 }
 request.send(null);
 data = request.responseText;
-console.log(data);
+console.log("this is the data:", data);
 parsedData = JSON.parse(data);
 
 }
