@@ -17,8 +17,8 @@ request.onreadystatechange = function() {
 
 //document.h2.innerHTML = parsedData[1].id;
 element = document.getElementById('messages');
-element.document.write = parsedData[0].id;
-element.document.write = parsedData[0].content;
+element.document.write(parsedData[0].id);
+element.document.write(parsedData[0].content);
 console.log("parsed the data", parsedData);
 
 
