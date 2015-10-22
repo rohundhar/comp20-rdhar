@@ -8,14 +8,12 @@ request.send(null);
 
 request.onreadystatechange = function() {
 	if (request.readyState == 4){
-		console.log("DATA RECEIVED!");
 		parsedData = JSON.parse(request.responseText);
 
 		var output = "";
 		for (var i=0; i<2; i++){
 			output += "<p>" + parsedData[i].content + " -- " + parsedData[i].username + "</p>";
 		}
-		//output += "</ul>";
 
 		var element = document.getElementById('messages');
 		element.innerHTML = output;
