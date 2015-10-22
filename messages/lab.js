@@ -9,7 +9,7 @@ request.onreadystatechange = function() {
 	}
 	request.send(null);
 	var data = request.responseText;
-}
+
 var parsedData = JSON.parse(data);
 
 }
