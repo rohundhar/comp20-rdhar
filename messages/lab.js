@@ -11,15 +11,17 @@ request.onreadystatechange = function() {
 	if (request.readyState == 4){
 		console.log("DATA RECEIVED!");
 		parsedData = JSON.parse(request.responseText);
+
+		var output = "<ul>";
+		for (var i=0; i<2; i++){
+			output += "<li>" + parsedData[i].content + " -- " + parsedData[i].username + "</li>";
+		}
+		output += "</ul>";
+
+		element = document.getElementById('messages');
+	element.document.write(output);
 	} 
 
 }
-
-//document.h2.innerHTML = parsedData[1].id;
-element = document.getElementById('messages');
-element.document.write(parsedData[0].id);
-element.document.write(parsedData[0].content);
-console.log("parsed the data", parsedData);
-
 
 }
