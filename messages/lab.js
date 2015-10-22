@@ -13,7 +13,7 @@ request.onreadystatechange = function() {
 		console.log("parsed the data", parsedData);
 	} 
 }
-document.body.innerHTML = parsedData[1]["id"];
+document.body.innerHTML = parsedData.[1].["id"];
 
 
 }
