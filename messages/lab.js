@@ -2,7 +2,6 @@ function parse(){
 var data;
 var parsedData;
 var request = new XMLHttpRequest();
-var element;
 request.open("GET", "data.json", true);
 request.open("GET", "data.json", true);
 request.send(null);
@@ -18,8 +17,8 @@ request.onreadystatechange = function() {
 		}
 		output += "</ul>";
 
-		element = document.getElementById('messages');
-		element.innerHTML(output);
+		var element = document.getElementById('messages');
+		element.innerHTML = output;
 	} 
 
 }
