@@ -12,12 +12,8 @@ request.onreadystatechange = function() {
 		var parsedData = JSON.parse(request.responseText);
 		console.log("parsed the data", parsedData);
 	} 
-	//request.send(null);
 }
+document.body.innerHTML = parsedData[1]["id"];
 
-
-
-//parsedData = JSON.parse(data);
-//console.log("this is the data:", parsedData);
 
 }
