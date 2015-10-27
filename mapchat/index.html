@@ -1,18 +1,3 @@
-Skip to content
-This repository  
-Search
-Pull requests
-Issues
-Gist
- @rohundhar
- Watch 20
-  Star 28
- Fork 51 tuftsdev/WebProgramming
- Branch: gh-pages  WebProgramming/examples/google_maps/geolocation_map.html
-9d3f150  15 days ago
-@mchow01 mchow01 Removed console.log statements
-1 contributor
-RawBlameHistory     71 lines (60 sloc)  1.77 KB
 <!DOCTYPE html>
 
 <html>
@@ -20,10 +5,11 @@ RawBlameHistory     71 lines (60 sloc)  1.77 KB
 	<head>
 		<title>Geolocation Map Example</title>
 		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
-		<script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
-		<!--<link rel="stylesheet" href="geolocation_map_style.css" />-->
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
+		<link rel="stylesheet" href="geolocation_map_style.css" />
 		
 		<script>
+			console.log("TEST1");
 			var myLat = 0;
 			var myLng = 0;
 			var request = new XMLHttpRequest();
@@ -82,8 +68,6 @@ RawBlameHistory     71 lines (60 sloc)  1.77 KB
 		<div id="map_canvas"></div>
 	</body>
 </html>
-Status API Training Shop Blog About Pricing
-© 2015 GitHub, Inc. Terms Privacy Security Contact Help
 
 <!--
 <!DOCTYPE html>
