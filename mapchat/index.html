@@ -1,3 +1,18 @@
+Skip to content
+This repository  
+Search
+Pull requests
+Issues
+Gist
+ @rohundhar
+ Watch 20
+  Star 28
+ Fork 51 tuftsdev/WebProgramming
+ Branch: gh-pages  WebProgramming/examples/google_maps/geolocation_map.html
+9d3f150  15 days ago
+@mchow01 mchow01 Removed console.log statements
+1 contributor
+RawBlameHistory     71 lines (60 sloc)  1.77 KB
 <!DOCTYPE html>
 
 <html>
@@ -6,9 +21,82 @@
 		<title>Geolocation Map Example</title>
 		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
-		<!--<link rel="stylesheet" href="mapchat.css" /> -->
+		<link rel="stylesheet" href="geolocation_map_style.css" />
+		
 		<script>
 			var myLat = 0;
+			var myLng = 0;
+			var request = new XMLHttpRequest();
+			var me = new google.maps.LatLng(myLat, myLng);
+			var myOptions = {
+						zoom: 13, // The larger the zoom number, the bigger the zoom
+						center: me,
+						mapTypeId: google.maps.MapTypeId.ROADMAP
+					};
+			var map;
+			var marker;
+			var infowindow = new google.maps.InfoWindow();
+			
+			function init()
+			{
+				map = new google.maps.Map(document.getElementById("map_canvas"), myOptions);
+				getMyLocation();
+			}
+			
+			function getMyLocation() {
+				if (navigator.geolocation) { // the navigator.geolocation object is supported on your browser
+					navigator.geolocation.getCurrentPosition(function(position) {
+						myLat = position.coords.latitude;
+						myLng = position.coords.longitude;
+						renderMap();
+					});
+				}
+				else {
+					alert("Geolocation is not supported by your web browser.  What a shame!");
+				}
+			}
+			function renderMap()
+			{
+				me = new google.maps.LatLng(myLat, myLng);
+				
+				// Update map and go there...
+				map.panTo(me);
+	
+				// Create a marker
+				marker = new google.maps.Marker({
+					position: me,
+					title: "Here I Am!"
+				});
+				marker.setMap(map);
+					
+				// Open info window on click of marker
+				google.maps.event.addListener(marker, 'click', function() {
+					infowindow.setContent(marker.title);
+					infowindow.open(map, marker);
+				});
+			}
+		</script>
+	</head>
+	
+	<body onload="init()">
+		<div id="map_canvas"></div>
+	</body>
+</html>
+Status API Training Shop Blog About Pricing
+© 2015 GitHub, Inc. Terms Privacy Security Contact Help
+
+<!--
+<!DOCTYPE html>
+
+<html>
+
+	<head>
+		<title>Geolocation Map Example</title>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
+		<link rel="stylesheet" href="mapchat.css" /> 
+		<script>
+		/*	var myLat = 0;
 			var myLng = 0;
 			var request = new XMLHttpRequest();
 			var me = new google.maps.LatLng(myLat, myLng);
@@ -60,11 +148,11 @@
 					infowindow.setContent(me);
 					infowindow.open(map, marker);
 				});
-			}
+			}/*
 		</script>
 	</head>
 	
 	<body onload="init()">
 		<div id="map_canvas"></div>
 	</body>
-</html>
+</html>  -->
