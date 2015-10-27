@@ -25,6 +25,7 @@
 			{
 				map = new google.maps.Map(document.getElementById("map_canvas"), mapSettings);
 				getMyLocation();
+				console.log('in init function');
 			}
 			
 			function getMyLocation() {
@@ -32,6 +33,7 @@
 					navigator.geolocation.getCurrentPosition(function(position) {
 						myLat = position.coords.latitude;
 						myLng = position.coords.longitude;
+						console.log('retrieved location');
 						renderMap();
 					});
 				}
@@ -41,6 +43,7 @@
 			}
 			function renderMap()
 			{
+				console.log('rendering map');
 				me = new google.maps.LatLng(myLat, myLng);
 				map.panTo(me);
 	
