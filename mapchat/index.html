@@ -8,7 +8,6 @@
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
 		<link rel="stylesheet" href="mapchat.css" /> 
 		<script>
-			var NUM_USERS = 51;
 			var myLat = 0;
 			var myLng = 0;
 			var request = new XMLHttpRequest();
@@ -16,7 +15,6 @@
 			var mapSettings = {
 						center: me,
 						zoom: 14,
-						//mapTypeId: google.maps.MapTypeId.ROADMAP
 					};
 			var map;
 			var parsedData;
@@ -24,7 +22,6 @@
 			{
 				map = new google.maps.Map(document.getElementById("map_canvas"), mapSettings);
 				getMyLocation();
-				console.log('in init function');
 			}
 			
 			function getMyLocation() {
@@ -32,13 +29,13 @@
 					navigator.geolocation.getCurrentPosition(function(position) {
 						myLat = position.coords.latitude;
 						myLng = position.coords.longitude;
-						console.log('retrieved location');
 						renderMap();
 					});
 
 					request.open("POST", "https://secret-about-box.herokuapp.com/sendLocation", true);
 					request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 					request.send("login=JeffSoulen&lat="+myLat+"&lng="+myLng+"&message='Hey%20everyone%20my%20name%20is%20Jeff");
+					// These lines of code initialize the httprequest object and send information in order to receive the proper JSON data 
 
 					request.onreadystatechange = function() {
 						if (request.readyState == 4){
@@ -48,38 +45,40 @@
 				}
 				else {
 					alert("Geolocation does not work on this web browser!");
+					// this message will show if navigator.geolocation is not compatible with the user's browser 
 				}
 			}
 			function renderMap()
 			{
-				console.log('rendering map');
 				me = new google.maps.LatLng(myLat, myLng);
 				map.panTo(me);
-				createMyMarker();
-				console.log('created self marker');
-				console.log("data: ",parsedData);
-				for (var i = 0; i<NUM_USERS;i++){
-					console.log('entered markerloop');
+				
+				
+				for (var i = 0; i<parsedData.length;i++){
 					createMarker(i);	
+					// this will create a marker for each of the users received from the parsedData 
 				}	
+				createMyMarker();
+				// this will create my custom marker, which is different from other markers so it gets its own function 
 				
 			}
 			function createMyMarker(){
 				var marker;		
+				var content  = "<ul> <li> You've successfully logged in!</li> <li> Your location: "+ me.toString() + "</li> </ul>"
+				// this string will show that you've logged in and display your exact location 
 				var infowindow = new google.maps.InfoWindow({
-					content: me.toString()
-
+					content: content
 				});
-				console.log('set content of infowindow');
-				var image = "marker_icon.png";
+
+				var image = "marker_icon.png"; // the custom icon for this machine 
 				marker = new google.maps.Marker({
 					position: me,
 					title: "My Location!",
-					map:map
-					icon: image;
+					map:map,
+					icon: image
 
 				});
-				infowindow.open(map, marker);
+				infowindow.open(map, marker); // open the marker
 				google.maps.event.addListener(marker, 'click', function() {
 					infowindow.open(map,marker);
 				});
@@ -90,7 +89,6 @@
 				var infowindow = new google.maps.InfoWindow({
 					content: content
 				});
-				var position =  parsedData[value].lat
 				var position = new google.maps.LatLng(parsedData[value].lat, parsedData[value].lng);
 				marker = new google.maps.Marker({
 					position: position,
@@ -98,8 +96,6 @@
 					map:map
 
 				});
-				console.log("creating friend...");
-				infowindow.open(map, marker);
 
 				google.maps.event.addListener(marker, 'click', function() {
 					infowindow.open(map,marker);
@@ -107,8 +103,9 @@
 			} 
 			function parseInformation(value){
 					var output = "";
-					output += "<ul>" + "<li>" + parsedData[value].login +"</li>" + "<li>" + parsedData[value].message + "</li>" + "<li>" + parsedData[value].created_at + "</li>" + "</ul>"; 
-					return output;		
+					output += "<ul> <li>" + parsedData[value].login +"</li> <li>" + parsedData[value].message + "</li> <li>" + parsedData[value].created_at + "</li> </ul>"; 
+					return output;	
+					// returns the output that will be inserted into that marker's infoWindow 	
 			} 
 		</script>
 	</head>
