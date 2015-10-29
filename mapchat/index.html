@@ -8,6 +8,7 @@
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
 		<link rel="stylesheet" href="mapchat.css" /> 
 		<script>
+			var NUM_USERS = 4;
 			var myLat = 0;
 			var myLng = 0;
 			var request = new XMLHttpRequest();
@@ -18,8 +19,7 @@
 						//mapTypeId: google.maps.MapTypeId.ROADMAP
 					};
 			var map;
-			request.open("POST", "https://secret-about-box.herokuapp.com/sendLocation", true);
-			request.send("rdhar02",me,"My name is Bob");
+			var parsedData;
 			function init()
 			{
 				map = new google.maps.Map(document.getElementById("map_canvas"), mapSettings);
@@ -35,6 +35,17 @@
 						console.log('retrieved location');
 						renderMap();
 					});
+
+					request.open("POST", "https://secret-about-box.herokuapp.com/sendLocation", true);
+					request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+					request.setRequestHeader("Content-length", NUM_USERS);
+					request.send("login=JeffSoulen&lat=myLat&lng=myLng&message='Hey%20everyone%20my%20name%20is%20Jeff");
+
+					request.onreadystatechange = function() {
+						if (request.readyState == 4){
+							parsedData = JSON.parse(request.responseText);
+						}
+					}
 				}
 				else {
 					alert("Geolocation does not work on this web browser!");
@@ -45,27 +56,62 @@
 				console.log('rendering map');
 				me = new google.maps.LatLng(myLat, myLng);
 				map.panTo(me);
-				createMarkers();		
+				createMyMarker();
+				console.log('created self marker');
+				console.log("data: ",parsedData);
+				for (var i = 0; i<NUM_USERS;i++){
+					console.log('entered markerloop');
+					createMarker(i);	
+				}	
+				
 			}
-			function createMarkers(){
-				var marker;
-				var infowindow = new google.maps.InfoWindow();
-				marker = new google.maps.Marker({
-					position: me,
-					title: "Here I Am!"
+			function createMyMarker(){
+				var marker;		
+				var infowindow = new google.maps.InfoWindow({
+					content: me.toString()
 
 				});
-				marker.setMap(map);
-					
+				console.log('set content of infowindow');
+				marker = new google.maps.Marker({
+					position: me,
+					title: "My Location!",
+					map:map
+
+				});
+				infowindow.open(map, marker);
+				//infowindow.setContent(info);
 				// Open info window on click of marker
-				infowindow.setContent(marker.title);
+				google.maps.event.addListener(marker, 'click', function() {
+					infowindow.open(map,marker);
+				});
+			} 
+			function createMarker(value){
+				var content = parseInformation(value);
+				var marker;				
+				var infowindow = new google.maps.InfoWindow({
+					content: content
+				});
+				marker = new google.maps.Marker({
+					position: me,
+					title: "Here's a friend!",
+					map:map
+
+				});
+				console.log("creating friend...");
+				// Open info window on click of marker
+				//infowindow.setContent(marker.title);
 					//infowindow.setContent(me);
 				infowindow.open(map, marker);
 
 				google.maps.event.addListener(marker, 'click', function() {
 					infowindow.open(map,marker);
 				});
-			}
+			} 
+			function parseInformation(value){
+					var output = "";
+					output += "<ul>" + "<li>" + parsedData[value].login +"</li>" + "<li>" + parsedData[value].message + "</li>" + "<li>" + parsedData[value].created_at + "</li>" + "</ul>"; 
+					return output;		
+			} 
 		</script>
 	</head>
 	
