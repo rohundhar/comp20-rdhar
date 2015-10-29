@@ -8,7 +8,7 @@
 		<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?sensor=true"></script>
 		<link rel="stylesheet" href="mapchat.css" /> 
 		<script>
-			var NUM_USERS = 4;
+			var NUM_USERS = 51;
 			var myLat = 0;
 			var myLng = 0;
 			var request = new XMLHttpRequest();
@@ -38,8 +38,7 @@
 
 					request.open("POST", "https://secret-about-box.herokuapp.com/sendLocation", true);
 					request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-					request.setRequestHeader("Content-length", NUM_USERS);
-					request.send("login=JeffSoulen&lat=myLat&lng=myLng&message='Hey%20everyone%20my%20name%20is%20Jeff");
+					request.send("login=JeffSoulen&lat="+myLat+"&lng="+myLng+"&message='Hey%20everyone%20my%20name%20is%20Jeff");
 
 					request.onreadystatechange = function() {
 						if (request.readyState == 4){
@@ -72,15 +71,15 @@
 
 				});
 				console.log('set content of infowindow');
+				var image = "marker_icon.png";
 				marker = new google.maps.Marker({
 					position: me,
 					title: "My Location!",
 					map:map
+					icon: image;
 
 				});
 				infowindow.open(map, marker);
-				//infowindow.setContent(info);
-				// Open info window on click of marker
 				google.maps.event.addListener(marker, 'click', function() {
 					infowindow.open(map,marker);
 				});
@@ -91,16 +90,15 @@
 				var infowindow = new google.maps.InfoWindow({
 					content: content
 				});
+				var position =  parsedData[value].lat
+				var position = new google.maps.LatLng(parsedData[value].lat, parsedData[value].lng);
 				marker = new google.maps.Marker({
-					position: me,
+					position: position,
 					title: "Here's a friend!",
 					map:map
 
 				});
 				console.log("creating friend...");
-				// Open info window on click of marker
-				//infowindow.setContent(marker.title);
-					//infowindow.setContent(me);
 				infowindow.open(map, marker);
 
 				google.maps.event.addListener(marker, 'click', function() {
