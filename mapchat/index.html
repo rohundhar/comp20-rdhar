@@ -34,9 +34,8 @@
 
 					request.open("POST", "https://secret-about-box.herokuapp.com/sendLocation", true);
 					request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-					request.send("login=JeffSoulen&lat="+myLat+"&lng="+myLng+"&message='Hey%20everyone%20my%20name%20is%20Jeff");
+					request.send("login=JeffSoulen&lat="+myLat+"&lng="+myLng+"&message=Life%20is%20short%20and%20meaningless%20without%20Chipotle");
 					// These lines of code initialize the httprequest object and send information in order to receive the proper JSON data 
-
 					request.onreadystatechange = function() {
 						if (request.readyState == 4){
 							parsedData = JSON.parse(request.responseText);
@@ -94,7 +93,6 @@
 					position: position,
 					title: "Here's a friend!",
 					map:map
-
 				});
 
 				google.maps.event.addListener(marker, 'click', function() {
