@@ -6,44 +6,39 @@
 	<title>Captain's Log</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script>
-		//var element = document.getElementById('log');
-		//element.innerHTML = output;
-
 		$(document).ready(function(){
-			var itemCount = 0;
-			var msgArray = [];
-			var storedMsg = [];
+			var storedMessages = [];
 			var tempMsg =localStorage.getItem("messages");
 			tempMsg = JSON.parse(tempMsg);
-			if (tempMsg != null) {
-				console.log("FOUND THINGS IN LOCALSTORAGE");
-				//print out objects in the msgArray
+			if (tempMsg != null) { // found data in localstorage
+
 				for (var i = 0; i < tempMsg.length; i++){
-					console.log("Starting printing loop...");
-					
+					//for each item in the array, add it to the webpage in a list
 					$("#log").prepend( "<li>" + JSON.stringify(tempMsg[i]) + '</li>');
 					}
-				console.log("skipped for loop...");
-				console.log("Stored messages:", tempMsg);
-				console.log("stored length: ",tempMsg.length);
-				storedMsg = tempMsg;
-			}//when somebody presses enter into the box
+				// set the storedMessages with what was in local storage to begin with 
+				storedMessages = tempMsg; 
+			}
 
 	  		$("#msg").keypress(function(event) {
 				if (event.which == 13) {
-				// add a list item
-					//create message variable to store
+
 					var input = $("#msg").val(); 
-					//create the date item to store
+					// obtain the input
+				
 					var date = new Date;
-					//create the total message
+					//obtain the date 
+
 					var totalMessage = date + " - " + input;
-					//prepend message to the list
+					// combine the date and message into one string 
+
 					$("#log").prepend( "<li>" + JSON.stringify(totalMessage) + "</li>");
-					//add the new message to the front of the array
-					storedMsg.push(totalMessage);
-					localStorage.setItem("messages", JSON.stringify(storedMsg));
-					console.log(JSON.stringify(storedMsg));
+					// add that message to the webpage following a list format
+
+					storedMessages.push(totalMessage);
+					//add the new message to the array 
+					localStorage.setItem("messages", JSON.stringify(storedMessages));
+					// adds the newly updated array into localstorage!
 	  			}
 	  		});
 
