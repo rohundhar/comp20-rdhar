@@ -6,7 +6,19 @@
 	<title>Captain's Log</title>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 	<script>
-	  // Your work will be done here...
+		$(document).ready(function(){
+			localStorage.setItem('vanilla', 'ice cream');
+	  		console.log(localStorage.getItem('vanilla'));
+	  		$("#msg").keypress(function(event) {
+				if (event.which == 13) {
+					// your code here
+				}
+			}
+
+
+		});
+
+	 
 	</script>
 </head>
 
