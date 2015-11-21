@@ -30,11 +30,13 @@
 						myLat = position.coords.latitude;
 						myLng = position.coords.longitude;
 						renderMap();
-					});
 
-					request.open("POST", "https://secret-about-box.herokuapp.com/sendLocation", true);
+					request.open("POST","https://mapchatserver.herokuapp.com/sendLocation" , true);
+					//"http://localhost:5000/sendLocation"
 					request.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 					request.send("login=JeffSoulen&lat="+myLat+"&lng="+myLng+"&message=Life%20is%20short%20and%20meaningless%20without%20Chipotle");
+					});
+
 					// These lines of code initialize the httprequest object and send information in order to receive the proper JSON data 
 					request.onreadystatechange = function() {
 						if (request.readyState == 4){
@@ -51,14 +53,14 @@
 			{
 				me = new google.maps.LatLng(myLat, myLng);
 				map.panTo(me);
-				
-				
-				for (var i = 0; i<parsedData.length;i++){
-					createMarker(i);	
-					// this will create a marker for each of the users received from the parsedData 
-				}	
 				createMyMarker();
 				// this will create my custom marker, which is different from other markers so it gets its own function 
+			
+				//for (var i = 0; i<parsedData.length;i++){
+				//	createMarker(i);	
+					// this will create a marker for each of the users received from the parsedData 
+				//}	
+				
 				
 			}
 			function createMyMarker(){
