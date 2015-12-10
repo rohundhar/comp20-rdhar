@@ -1,0 +1,11 @@
+{
+        "name": "node-example",
+        "version": "0.0.1",
+        "dependencies": {
+                "express": "latest",
+                "mongodb": "latest",
+                "body-parser": "latest",
+		"validator":"latest",
+		"socket.io":"latest"
+        }
+}
