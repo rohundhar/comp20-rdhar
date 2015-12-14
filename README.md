@@ -1,5 +1,9 @@
 README
 
-In this assignment, I read in data from a .json file using an XMLHttpRequest and then used that parsed data to display it onto the html page. This assignment took approximately 3-4 hours to complete and I did not collaborate with any other students.
+Web Programming, COMP 20- might catch the name of the folder, is a class in which I learned the most important thing I could in a computer science curriculum: how to learn. I meet a lot of programmers who have internalized a vast amount of information; everything from perfect syntax for ten programming languages to knowing exactly which data structure to use in what problem set. But what I feel I have gained is the ability to problem-solve in a way that maybe those programmers can't. I may only know three or four languages, but I can promise that I can learn a new one quickly and with the skill to parse through what is actually essential to the understanding the language's role in the problem I am solving. It is, unfortunately, increasingly rarer to expect personal growth from a computer science course. 
+
+But I do feel I have absorbed a great deal of technical knowledge as well: it was my introduction to HTML, CSS, JQuery, node.js, heroku, and even server databases. I remember being frustrated by some of my professor's assignments, cursing the fact that I have to google and search up my own techniques and syntax instead of being taught in the classroom. But there was a day in class in which students were allowed to give 'lightning talk', five minute speeches on a topic they have discovered and mastered(relatively). I was ecstatic that entire period; so excited to find out that other students had actually, on their own, become their own master. I even found my own topic that I've mastered- socket.io - though I wasn't able to give a lightning talk that day.
+
+I used to feel uncomfortable with the amount of technical knowledge I do not have in comparison to other programmers, but I've since turned that discomfort into an empowering energy with which to approach the world. 
 
 Rohun Dhar 
