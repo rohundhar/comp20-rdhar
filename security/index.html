@@ -2,7 +2,8 @@
 <html>
 <head>
 <title>Security</title>
-
+<link rel="stylesheet" type="text/css" href="index.css">
+<meta charset="UTF-8">
 </head>
 <body>
 <h1>Introduction</h1>
@@ -36,9 +37,14 @@ Thirdly, authentication is a huge issue here. There is supposed to be a whitelis
 <p>
 Cross-Site Scripting Risk (XSS)
 <ul>
-	<li>At the root directory “/”  there is a risk for cross-site scripting. This html page displays any message that the user has sent to the server, and if the user has injected javascript using the tag &lt;script&gt; or even inserted an image using the &lt;img&gt;then that code would execute once up on the browser.</li>
+	<li>At the root directory “/”  there is a risk for cross-site scripting. This html page displays any message that the user has sent to the server, and if the user has injected javascript using the tag <code>&lt;script&gt;</code> or even inserted an image using the <code>&lt;img&gt;</code> then that code would execute once up on the browser.</li>
 	<li>The severity of this issue is high. Damage from XSS in this case can range anywhere from creating an alert to redirecting the user to a malicious and intrusive web page. </li>
-	<li>The resolution to this issue has multiple levels of involvement. Minimally, the user can do a simple screening of javascript notation to display < and > tags as harmless strings as opposed to executable code. This can be done by translating < as &lt; and > as  &gt;. The server can also do a check to limit the message to a certain number of characters(e.g. 140 characters, the length of a tweet); this will prevent potentially malicious code from being intricate enough to do any intense damage. </li>
+	<img src="assets/alertHack.png"alt="Alert Hack" style="width:500px;height:350px;">
+	<img src="assets/redirect.png" alt="Page Redirect" style="width:500px;height:350px;">
+	<img src="assets/videoHack.png" alt="Embedded Video" style="width:500px;height:350px;">
+	<img src="assets/imgHack.png" alt="Embededd Image" style="width:500px;height:350px;">
+	<li> In order from top left, top right, bottom left, and bottom right are prime examples of XXS that have resulted in an intrusive alert, page redirect to reddit.com, embedded video, and image respectively.</li>
+	<li>The resolution to this issue has multiple levels of involvement. Minimally, the user can do a simple screening of javascript notation to display < and > tags as harmless strings as opposed to executable code. This can be done by translating < as '&amp;lt;' and > as  '&amp;gt;'. The server can also do a check to limit the message to a certain number of characters(e.g. 140 characters, the length of a tweet); this will prevent potentially malicious code from being intricate enough to do any intense damage. </li>
 </ul>
 </p>
  
@@ -47,7 +53,9 @@ Cross-Site Scripting Risk (XSS)
 <ul>
 	<li>This issue is located within the server file itself</li>
 	<li>Severity of issue: medium. At the top of the file is a hard-coded white list of all valid usernames. This is sensitive information that should not be so outwardly shown in the main file of this server.</li>
-	<li>Also, on the main root directory page “/” there is a list of all user’s information. This includes their specific latitude and longitude, leaving their exact global location wide open for anyone with a modern web browser to see.</li>
+	<li>Also, on the main root directory page '/' there is a list of all user’s information. This includes their specific latitude and longitude, leaving their exact global location wide open for anyone with a modern web browser to see.</li>
+	<img src="assets/privacyIssue.png" style='width:1000px;height:100px'>
+	<li></li>
 	<li>Resolutions to this issue include, but not are not limited to, creating a separate encoded folder for whitelisted usernames, not displaying the full username onto the website along with that user’s location. The user’s name should not be broadcast on the website, perhaps only a shortened version: JeffSoulen would become Jsoulen. Also, instead of giving the exact global address, the server can find the correlating country and display that instead. “JSoulen from Massachusetts says” versus “Jeff Soulen from 41.12381203091, -71.2138021983 says”</li>
 
 
@@ -68,6 +76,7 @@ Authentication issue
 </p>
 
 <h2>Conclusion</h2> 
+<p></p>
 
 </body>
 </html>
