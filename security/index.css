@@ -4,6 +4,9 @@ h1{
 
 	
 }
+body{
+	background-image: url("assets/background.jpg");
+}
 h2{
 	display: block;
 	text-align: center;
